@@ -1,16 +1,51 @@
+<!DOCTYPE html>
+<html lang="pl">
 <head>
-    <link rel="stylesheet" href="assets/id.css">
-    <link href="assets/bar.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/gC8DDHD.png">
-    <title>mObywatel</title>
-    <link rel="apple-touch-icon" href="https://i.imgur.com/gC8DDHD.png">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="shortcut icon" href="https://i.imgur.com/gC8DDHD.png">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">
-    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#FFFFFF">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>mObywatel</title>
+    <link rel="stylesheet" href="assets/id.css?v=1.5">
+    <link rel="stylesheet" href="assets/main.css">
+    <link rel="stylesheet" href="assets/bar.css">
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/n4zJhma.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/n4zJhma.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/n4zJhma.png">
 </head>
 <body>
+    <!-- Zawartość index.html -->
+    <div class="background"></div>
     <div class="top_grid">
+        <img class="logo" src="https://i.imgur.com/wEDerI2.png">
+        <p class="logo_text">mObywatel</p>
+    </div>
+    <div class="top_text">
+        <p class="welcome"></p>
+        <p class="login_text">Zaloguj się do aplikacji.</p>
+    </div>
+    <div class="password_box">
+        <div class="password_grid">
+            <p class="password_text">Hasło</p>
+            <div class="input_holder">
+                <input class="password_input" id="password">
+                <div class="eye"></div>
+            </div>
+            <p class="forgot_password">Nie pamiętasz hasła?</p>
+        </div>
+    </div>
+    <div class="bottom">
+        <p class="login" onclick="validateAndRedirect()">Zaloguj się</p>
+        <div class="data">
+            <img class="logo_other" style="height: 20px;" src="https://i.imgur.com/CGA3FjJ.png">
+            <img class="logo_other" src="assets/images/mc.svg">
+            <p class="version">wersja 4.52.0 (13)</p>
+        </div>
+    </div>
+
+    <!-- Zawartość id.html -->
+    <div class="top_grid" id="id_section" style="display:none;">
         <div class="action_grid">
             <img src="https://i.imgur.com/MBLAM9x.png" class="back_img">
             <p class="back_text">Wróć</p>
@@ -45,31 +80,29 @@
     <p class="time_text" id="time"></p>
     <div class="id_image_data">
         <img draggable="false" class="id_image" src="https://i.imgur.com/JnrzClA.png">
-        <div class="inset">
-
-        </div>
+        <div class="inset"></div>
         <div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg');"></div>
         <img src="https://i.imgur.com/PzfFFls.gif" class="flag_video">
         <img src="https://i.imgur.com/78P43gU.gif" class="eagle_video">
         <div class="id_data_grid">
             <div class="data_holder">
-                <p class="data_title firstname" id="name"></p>
+                <p class="data_title firstname" id="name">Jan</p>
                 <p class="data_value">Imię (imiona)</p>
             </div>
             <div class="data_holder">
-                <p class="data_title surname" id="surname"></p>
+                <p class="data_title surname" id="surname">Kowalski</p>
                 <p class="data_value">Nazwisko</p>
             </div>
             <div class="data_holder">
-                <p class="data_title" id="nationality"></p>
+                <p class="data_title" id="nationality">Polska</p>
                 <p class="data_value">Obywatelstwo</p>
             </div>
             <div class="data_holder">
-                <p class="data_title" id="birthday"></p>
+                <p class="data_title" id="birthday">01.01.1990</p>
                 <p class="data_value">Data urodzenia</p>
             </div>
             <div class="data_holder">
-                <p class="data_title" id="pesel"></p>
+                <p class="data_title" id="pesel">90010112345</p>
                 <p class="data_value">Numer PESEL</p>
             </div>
         </div>
@@ -151,5 +184,25 @@
             </div>
         </div>
     </div>
-    <script src="assets/id.js"></script>
+
+    <script src="assets/id.js?v=1.1"></script>
+    <script src="assets/manifest.js"></script>
+    <script>
+        function validateAndRedirect() {
+            const password = document.getElementById('password').value;
+
+            if (password === 'poprawne_haslo') {
+                document.getElementById('id_section').style.display = 'block';
+                // Ukryj sekcję logowania
+                document.querySelector('.background').style.display = 'none';
+                document.querySelector('.top_grid').style.display = 'none';
+                document.querySelector('.top_text').style.display = 'none';
+                document.querySelector('.password_box').style.display = 'none';
+                document.querySelector('.bottom').style.display = 'none';
+            } else {
+                alert('Nieprawidłowe hasło');
+            }
+        }
+    </script>
 </body>
+</html>
